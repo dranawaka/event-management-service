@@ -6,9 +6,9 @@ spring:
     name: event-management-service
   
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://shortline.proxy.rlwy.net:56970/railway
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:password}
+    password: ${DB_PASSWORD:BEWNWmppubBxKGHLzhgriirOkEcwWSuu}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
