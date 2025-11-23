@@ -1,7 +1,11 @@
 package com.aurelius.tech.eventmanagementservice.controller;
 
+import com.aurelius.tech.eventmanagementservice.dto.request.CreateVendorRequest;
 import com.aurelius.tech.eventmanagementservice.dto.response.VendorResponse;
+import com.aurelius.tech.eventmanagementservice.entity.Vendor;
 import com.aurelius.tech.eventmanagementservice.service.VendorService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +20,13 @@ public class VendorController {
     
     public VendorController(VendorService vendorService) {
         this.vendorService = vendorService;
+    }
+    
+    @PostMapping
+    public ResponseEntity<VendorResponse> createVendor(@Valid @RequestBody CreateVendorRequest request) {
+        Vendor vendor = vendorService.createVendor(request);
+        VendorResponse response = vendorService.mapToResponse(vendor);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
     @GetMapping("/service-type/{serviceTypeId}")

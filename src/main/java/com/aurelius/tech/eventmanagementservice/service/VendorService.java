@@ -1,10 +1,13 @@
 package com.aurelius.tech.eventmanagementservice.service;
 
+import com.aurelius.tech.eventmanagementservice.dto.request.CreateVendorRequest;
 import com.aurelius.tech.eventmanagementservice.dto.response.VendorResponse;
 import com.aurelius.tech.eventmanagementservice.entity.Vendor;
 import com.aurelius.tech.eventmanagementservice.exception.ResourceNotFoundException;
+import com.aurelius.tech.eventmanagementservice.repository.ServiceTypeRepository;
 import com.aurelius.tech.eventmanagementservice.repository.VendorRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,9 +17,29 @@ import java.util.stream.Collectors;
 public class VendorService {
     
     private final VendorRepository vendorRepository;
+    private final ServiceTypeRepository serviceTypeRepository;
     
-    public VendorService(VendorRepository vendorRepository) {
+    public VendorService(VendorRepository vendorRepository, ServiceTypeRepository serviceTypeRepository) {
         this.vendorRepository = vendorRepository;
+        this.serviceTypeRepository = serviceTypeRepository;
+    }
+    
+    @Transactional
+    public Vendor createVendor(CreateVendorRequest request) {
+        // Validate service type exists
+        serviceTypeRepository.findById(request.getServiceTypeId())
+                .orElseThrow(() -> new ResourceNotFoundException("ServiceType", "id", request.getServiceTypeId()));
+        
+        Vendor vendor = new Vendor();
+        vendor.setName(request.getName());
+        vendor.setDescription(request.getDescription());
+        vendor.setContactEmail(request.getContactEmail());
+        vendor.setContactPhone(request.getContactPhone());
+        vendor.setServiceTypeId(request.getServiceTypeId());
+        vendor.setBaseRate(request.getBaseRate());
+        vendor.setIsActive(request.getIsActive() != null ? request.getIsActive() : true);
+        
+        return vendorRepository.save(vendor);
     }
     
     public Vendor getVendorById(UUID id) {
@@ -38,7 +61,7 @@ public class VendorService {
                 .collect(Collectors.toList());
     }
     
-    private VendorResponse mapToResponse(Vendor vendor) {
+    public VendorResponse mapToResponse(Vendor vendor) {
         VendorResponse response = new VendorResponse();
         response.setId(vendor.getId());
         response.setName(vendor.getName());
