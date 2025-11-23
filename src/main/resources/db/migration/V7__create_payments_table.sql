@@ -16,3 +16,5 @@ CREATE INDEX idx_payments_transaction ON payments(transaction_id);
 CREATE INDEX idx_payments_status ON payments(status);
 
 
+
+

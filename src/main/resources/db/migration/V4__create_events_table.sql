@@ -26,3 +26,5 @@ CREATE INDEX idx_events_visibility ON events(visibility);
 CREATE INDEX idx_events_start_date ON events(start_date_time);
 
 
+
+

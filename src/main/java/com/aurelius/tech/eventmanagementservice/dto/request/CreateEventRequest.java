@@ -3,9 +3,12 @@ package com.aurelius.tech.eventmanagementservice.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.Valid;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -36,6 +39,11 @@ public class CreateEventRequest {
     private String visibility = "PUBLIC";
     
     private String imageUrl;
+    
+    @Valid
+    private List<EventServiceRequest> services = new ArrayList<>();
 }
+
+
 
 

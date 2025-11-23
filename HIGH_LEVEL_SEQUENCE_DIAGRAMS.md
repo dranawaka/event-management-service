@@ -408,3 +408,5 @@ sequenceDiagram
 - All diagrams use **Mermaid** syntax
 - Diagrams can be rendered in GitHub, GitLab, VS Code, and documentation tools
 
+
+

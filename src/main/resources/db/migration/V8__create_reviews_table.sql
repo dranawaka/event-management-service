@@ -16,3 +16,5 @@ CREATE INDEX idx_reviews_user ON reviews(user_id);
 CREATE INDEX idx_reviews_approved ON reviews(is_approved);
 
 
+
+

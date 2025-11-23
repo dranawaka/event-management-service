@@ -15,3 +15,5 @@ CREATE INDEX idx_venues_city ON venues(city);
 CREATE INDEX idx_venues_country ON venues(country);
 
 
+
+

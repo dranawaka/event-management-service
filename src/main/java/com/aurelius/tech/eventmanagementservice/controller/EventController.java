@@ -1,6 +1,8 @@
 package com.aurelius.tech.eventmanagementservice.controller;
 
 import com.aurelius.tech.eventmanagementservice.dto.request.CreateEventRequest;
+import com.aurelius.tech.eventmanagementservice.dto.response.EventFinancialMetricsResponse;
+import com.aurelius.tech.eventmanagementservice.dto.response.EventServiceResponse;
 import com.aurelius.tech.eventmanagementservice.entity.Event;
 import com.aurelius.tech.eventmanagementservice.service.EventService;
 import jakarta.validation.Valid;
@@ -67,6 +69,18 @@ public class EventController {
     public ResponseEntity<List<Event>> searchEvents(@RequestParam String keyword) {
         return ResponseEntity.ok(eventService.searchEvents(keyword));
     }
+    
+    @GetMapping("/{id}/services")
+    public ResponseEntity<List<EventServiceResponse>> getEventServices(@PathVariable UUID id) {
+        return ResponseEntity.ok(eventService.getEventServices(id));
+    }
+    
+    @GetMapping("/{id}/financial-metrics")
+    public ResponseEntity<EventFinancialMetricsResponse> getEventFinancialMetrics(@PathVariable UUID id) {
+        return ResponseEntity.ok(eventService.getEventFinancialMetrics(id));
+    }
 }
+
+
 
 
