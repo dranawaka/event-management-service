@@ -7,6 +7,7 @@ import com.aurelius.tech.eventmanagementservice.exception.BusinessException;
 import com.aurelius.tech.eventmanagementservice.exception.ResourceNotFoundException;
 import com.aurelius.tech.eventmanagementservice.repository.PaymentRepository;
 import com.aurelius.tech.eventmanagementservice.repository.RegistrationRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,14 @@ public class PaymentService {
     
     private final PaymentRepository paymentRepository;
     private final RegistrationRepository registrationRepository;
+    private final BillingService billingService;
     
-    public PaymentService(PaymentRepository paymentRepository, RegistrationRepository registrationRepository) {
+    public PaymentService(PaymentRepository paymentRepository, 
+                         RegistrationRepository registrationRepository,
+                         @Lazy BillingService billingService) {
         this.paymentRepository = paymentRepository;
         this.registrationRepository = registrationRepository;
+        this.billingService = billingService;
     }
     
     @Transactional
@@ -46,6 +51,15 @@ public class PaymentService {
         
         registration.setStatus(com.aurelius.tech.eventmanagementservice.entity.enums.RegistrationStatus.CONFIRMED);
         registrationRepository.save(registration);
+        
+        // Automatically generate invoice for successful payment
+        try {
+            billingService.generateInvoice(payment.getId());
+        } catch (Exception e) {
+            // Log error but don't fail the payment processing
+            // Invoice can be generated later if needed
+            System.err.println("Failed to generate invoice for payment " + payment.getId() + ": " + e.getMessage());
+        }
         
         return payment;
     }
