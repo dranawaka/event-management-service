@@ -45,3 +45,4 @@ public class EventAnalyticsResponse {
     private List<Map<String, Object>> registrationTrends;
 }
 
+

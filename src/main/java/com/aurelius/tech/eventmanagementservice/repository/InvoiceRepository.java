@@ -13,3 +13,4 @@ public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
     Optional<Invoice> findByInvoiceNumber(String invoiceNumber);
 }
 
+

@@ -16,3 +16,4 @@ CREATE INDEX idx_event_services_event ON event_services(event_id);
 CREATE INDEX idx_event_services_service_type ON event_services(service_type_id);
 CREATE INDEX idx_event_services_vendor ON event_services(vendor_id);
 
+

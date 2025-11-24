@@ -1,5 +1,6 @@
 package com.aurelius.tech.eventmanagementservice.dto.request;
 
+import com.aurelius.tech.eventmanagementservice.entity.enums.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -23,7 +24,10 @@ public class RegisterRequest {
     private String lastName;
     
     private String phone;
+    
+    private UserRole role; // Optional - defaults to ATTENDEE if not provided
 }
+
 
 
 

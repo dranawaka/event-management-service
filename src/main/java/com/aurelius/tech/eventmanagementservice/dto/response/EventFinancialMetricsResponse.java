@@ -18,3 +18,4 @@ public class EventFinancialMetricsResponse {
     private Integer totalRegistrations;
 }
 
+

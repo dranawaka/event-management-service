@@ -15,3 +15,4 @@ public interface PayoutRepository extends JpaRepository<Payout, UUID> {
     List<Payout> findByStatus(PayoutStatus status);
 }
 
+

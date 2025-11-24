@@ -22,3 +22,4 @@ CREATE INDEX idx_registrations_qr_code ON registrations(qr_code);
 
 
 
+

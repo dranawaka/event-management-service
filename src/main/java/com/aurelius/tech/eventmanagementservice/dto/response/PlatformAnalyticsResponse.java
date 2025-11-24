@@ -42,3 +42,4 @@ public class PlatformAnalyticsResponse {
     private List<Map<String, Object>> platformRevenueTrends;
 }
 
+

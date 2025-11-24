@@ -35,7 +35,8 @@ public class AuthService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setPhone(request.getPhone());
-        user.setRole(UserRole.ATTENDEE);
+        // Use role from request, default to ATTENDEE if not provided
+        user.setRole(request.getRole() != null ? request.getRole() : UserRole.ATTENDEE);
         user.setStatus(UserStatus.ACTIVE);
         
         user = userRepository.save(user);

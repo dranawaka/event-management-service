@@ -15,3 +15,4 @@ CREATE TABLE vendors (
 CREATE INDEX idx_vendors_service_type ON vendors(service_type_id);
 CREATE INDEX idx_vendors_active ON vendors(is_active);
 
+

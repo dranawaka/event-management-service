@@ -12,3 +12,4 @@ public interface ServiceTypeRepository extends JpaRepository<ServiceType, UUID> 
     Optional<ServiceType> findByName(String name);
 }
 
+

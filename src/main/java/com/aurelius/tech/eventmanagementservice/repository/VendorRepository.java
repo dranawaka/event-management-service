@@ -13,3 +13,4 @@ public interface VendorRepository extends JpaRepository<Vendor, UUID> {
     List<Vendor> findByServiceTypeIdAndIsActiveTrue(UUID serviceTypeId);
 }
 
+

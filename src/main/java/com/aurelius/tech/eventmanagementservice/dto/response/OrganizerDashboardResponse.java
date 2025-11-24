@@ -39,3 +39,4 @@ public class OrganizerDashboardResponse {
     private List<Map<String, Object>> revenueTrends;
 }
 
+
