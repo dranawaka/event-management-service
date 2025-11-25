@@ -15,3 +15,4 @@ CREATE INDEX idx_invoices_number ON invoices(invoice_number);
 CREATE INDEX idx_invoices_issued_at ON invoices(issued_at);
 
 
+

@@ -19,3 +19,4 @@ CREATE INDEX idx_reviews_approved ON reviews(is_approved);
 
 
 
+

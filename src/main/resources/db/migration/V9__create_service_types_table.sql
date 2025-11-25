@@ -18,3 +18,4 @@ INSERT INTO service_types (name, description) VALUES
     ('Decoration', 'Event decoration and floral arrangements');
 
 
+
