@@ -2,6 +2,8 @@ package com.aurelius.tech.eventmanagementservice.entity;
 
 import com.aurelius.tech.eventmanagementservice.entity.enums.EventStatus;
 import com.aurelius.tech.eventmanagementservice.entity.enums.EventVisibility;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Event {
     
     @Id
@@ -32,6 +35,7 @@ public class Event {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id", insertable = false, updatable = false)
+    @JsonIgnore
     private User organizer;
     
     @Column(name = "venue_id")
@@ -39,6 +43,7 @@ public class Event {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "venue_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Venue venue;
     
     @Column(name = "category_id")
@@ -46,6 +51,7 @@ public class Event {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Category category;
     
     @Column(name = "start_date_time", nullable = false)
