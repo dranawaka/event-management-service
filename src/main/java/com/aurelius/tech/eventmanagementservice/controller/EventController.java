@@ -24,7 +24,16 @@ public class EventController {
     }
     
     @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
+    public ResponseEntity<List<Event>> getAllEvents(@RequestParam(required = false) String visibility) {
+        if (visibility != null && !visibility.isEmpty()) {
+            try {
+                com.aurelius.tech.eventmanagementservice.entity.enums.EventVisibility visibilityEnum = 
+                    com.aurelius.tech.eventmanagementservice.entity.enums.EventVisibility.valueOf(visibility.toUpperCase());
+                return ResponseEntity.ok(eventService.getAllEvents(visibilityEnum));
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().build();
+            }
+        }
         return ResponseEntity.ok(eventService.getAllEvents());
     }
     

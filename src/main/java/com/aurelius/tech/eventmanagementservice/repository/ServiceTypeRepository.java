@@ -16,3 +16,4 @@ public interface ServiceTypeRepository extends JpaRepository<ServiceType, UUID> 
 
 
 
+

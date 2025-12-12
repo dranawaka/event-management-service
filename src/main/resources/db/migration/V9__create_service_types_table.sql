@@ -21,3 +21,4 @@ INSERT INTO service_types (name, description) VALUES
 
 
 
+

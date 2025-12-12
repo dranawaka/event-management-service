@@ -22,3 +22,4 @@ CREATE INDEX idx_tickets_status ON tickets(status);
 
 
 
+

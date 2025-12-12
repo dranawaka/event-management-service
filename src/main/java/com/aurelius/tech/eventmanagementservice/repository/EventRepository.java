@@ -26,9 +26,13 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     @Query("SELECT e FROM Event e WHERE e.title LIKE %:keyword% OR e.description LIKE %:keyword%")
     List<Event> searchByKeyword(@Param("keyword") String keyword);
     
+    @Query("SELECT e FROM Event e WHERE (e.title LIKE %:keyword% OR e.description LIKE %:keyword%) AND e.visibility = 'PUBLIC'")
+    List<Event> searchPublicEventsByKeyword(@Param("keyword") String keyword);
+    
     @Query("SELECT e FROM Event e WHERE e.startDateTime BETWEEN :startDate AND :endDate")
     List<Event> findByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 }
+
 
 
 

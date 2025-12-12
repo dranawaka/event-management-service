@@ -109,7 +109,12 @@ public class EventService {
     }
     
     public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+        // Return only public events by default
+        return eventRepository.findByVisibility(EventVisibility.PUBLIC);
+    }
+    
+    public List<Event> getAllEvents(EventVisibility visibility) {
+        return eventRepository.findByVisibility(visibility);
     }
     
     public List<Event> getEventsByOrganizer(UUID organizerId) {
@@ -117,7 +122,8 @@ public class EventService {
     }
     
     public List<Event> searchEvents(String keyword) {
-        return eventRepository.searchByKeyword(keyword);
+        // Only search public events
+        return eventRepository.searchPublicEventsByKeyword(keyword);
     }
     
     public List<Event> getUpcomingPublicEvents() {

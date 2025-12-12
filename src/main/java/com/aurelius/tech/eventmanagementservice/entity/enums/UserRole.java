@@ -4,7 +4,8 @@ public enum UserRole {
     ADMIN,
     ORGANIZER,
     ATTENDEE,
-    VENDOR
+    VENDOR,
+    USER
 }
 
 
