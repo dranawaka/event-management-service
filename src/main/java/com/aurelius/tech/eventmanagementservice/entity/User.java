@@ -2,6 +2,8 @@ package com.aurelius.tech.eventmanagementservice.entity;
 
 import com.aurelius.tech.eventmanagementservice.entity.enums.UserRole;
 import com.aurelius.tech.eventmanagementservice.entity.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     
     @Id
@@ -25,6 +28,7 @@ public class User {
     private String email;
     
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     
     @Column(name = "first_name", nullable = false)
